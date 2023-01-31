@@ -4,7 +4,7 @@
 
   
   <div class="form my-3 mx-auto text-center p-3">
-    <h3 class="mb-5 fw-semibold">Tambah Data Poliklinik</h3>
+    <h3 class="mb-5 fw-semibold">Tambah Data Dokter</h3>
     <form action="{{ route('doctor.store') }}" method="POST">
       @csrf
       <div class="mb-4">
