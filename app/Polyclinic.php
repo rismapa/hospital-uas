@@ -1,0 +1,15 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Polyclinic extends Model
+{
+    protected $guarded = ['id'];
+
+    public function doctor()
+    {
+        return $this->hasMany('App\Doctor', 'polyclinic_id', 'id');
+    }
+}
