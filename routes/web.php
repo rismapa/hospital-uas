@@ -1,5 +1,6 @@
 <?php
 
+use App\Doctor;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,4 +23,11 @@ Route::get('/', function () {
 
 Route::resource('polyclinic', 'PolyclinicController');
 Route::resource('doctor', 'DoctorController');
+Route::resource('patient', 'PatientController');
+
+Route::get('/patient/get-doctor/{id}', function($id) {
+    $doctor = Doctor::where('polyclinic_id', $id)->get();
+
+    return response()->json($doctor);
+});
 

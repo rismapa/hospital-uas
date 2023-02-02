@@ -16,6 +16,13 @@ class PolyclinicController extends Controller
         return view('polyclinic.index', compact('polyclinics'));
     }
 
+    public function show($id)
+    {
+        $polyclinic = Polyclinic::find($id);
+
+        return view('polyclinic.show', compact('polyclinic'));
+    }
+
     public function create()
     {
         return view('polyclinic.create');

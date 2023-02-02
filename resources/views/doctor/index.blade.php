@@ -2,7 +2,7 @@
 
 @section('content')
 
-  <h2 class="mb-4">Selamat Datang di Dokter</h2>
+  <h2 class="mb-4">Halaman Dokter</h2>
   <a href="doctor/create" class="btn btn-primary">Tambah Dokter</a>
 
   @if (session()->get('success'))
@@ -29,7 +29,7 @@
         <tr>
           <th scope="row">{{ $loop->index + 1 }}</th>
           <td>{{ $doctor->registration_code }}</td>
-          <td>{{ $doctor->name }}</td>
+          <td><a href="/doctor/{{ $doctor->id }}">{{ $doctor->name }}</a></td>
           <td>{{ $doctor->polyclinic->name }}</td>
           <td>  
             <a href="doctor/{{ $doctor->id }}/edit" class="btn btn-primary">Edit</a>

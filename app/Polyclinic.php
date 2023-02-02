@@ -12,4 +12,8 @@ class Polyclinic extends Model
     {
         return $this->hasMany('App\Doctor', 'polyclinic_id', 'id');
     }
+    public function patient()
+    {
+        return $this->hasMany('App\Patient', 'polyclinic_id', 'id');
+    }
 }

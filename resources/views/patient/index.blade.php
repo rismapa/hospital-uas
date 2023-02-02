@@ -2,8 +2,8 @@
 
 @section('content')
 
-  <h2 class="mb-4">Halaman Poliklinik</h2>
-  <a href="polyclinic/create" class="btn btn-primary">Tambah Poliklinik</a>
+  <h2 class="mb-4">Halaman Pasien</h2>
+  <a href="patient/create" class="btn btn-primary">Tambah Pasien</a>
 
   @if (session()->get('success'))
     <div class="alert alert-success alert-dismissible fade show my-3" role="alert">
@@ -16,21 +16,30 @@
     <thead class="bg-dark text-light">
       <tr>
         <th scope="col" style="width: 5%">No</th>
+        <th scope="col">No Registrasi</th>
+        <th scope="col">Nama</th>
+        <th scope="col">Umur</th>
+        <th scope="col">Nama Dokter</th>
         <th scope="col">Nama Poli</th>
-        <th scope="col" style="width: 10%">Aksi</th>
-        <th scope="col" style="width: 10%"></th>
+        <th scope="col" style="width: 5%">Aksi</th>
+        <th scope="col" style="width: 5%"></th>
       </tr>
     </thead>
     <tbody>
-      @foreach ($polyclinics as $polyclinic)
+
+      @foreach ($patients as $patient)
         <tr>
           <th scope="row">{{ $loop->index + 1 }}</th>
-          <td><a href="polyclinic/{{ $polyclinic->id }}">{{ $polyclinic->name }}</a></td>
+          <td>{{ $patient->registration_code }}</td>
+          <td><a href="/patient/{{ $patient->id }}">{{ $patient->name }}</a></td>
+          <td>{{ Carbon\Carbon::parse($patient->birthdate)->age }} Tahun</td>
+          <td>{{ $patient->doctor->name }}</td>
+          <td>{{ $patient->polyclinic->name }}</td>
           <td>  
-            <a href="polyclinic/{{ $polyclinic->id }}}/edit" class="btn btn-primary">Edit</a>
+            <a href="patient/{{ $patient->id }}/edit" class="btn btn-primary">Edit</a>
           </td>
           <td>
-            <form action="polyclinic/{{ $polyclinic->id }}" method="POST">
+            <form action="patient/{{ $patient->id }}" method="POST">
               @csrf
               @method('DELETE')
               <button type="submit" class="btn btn-danger">Delete</button>
@@ -38,6 +47,7 @@
           </td>
         </tr>
       @endforeach
+
     </tbody>
   </table>
 @endsection
